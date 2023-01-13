@@ -1,0 +1,18 @@
+VENDOR_DIR := $(CORE_DIR)/../vendor
+LIBRETRO_COMM_DIR := $(VENDOR_DIR)/libretro-common
+
+INCFLAGS := \
+	-I$(VENDOR_DIR)/libretro-common/include \
+	-I$(VENDOR_DIR)/rimage
+
+ifneq (,$(findstring msvc2003,$(platform)))
+	INCFLAGS += -I$(LIBRETRO_COMM_DIR)/include/compat/msvc
+endif
+
+COREDEFINES = \
+	-D__LIBRETRO__
+
+SRC_DIRS := \
+	$(CORE_DIR)
+
+SOURCES_C := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
