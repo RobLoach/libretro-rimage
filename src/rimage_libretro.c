@@ -78,8 +78,8 @@ bool InitCore() {
    core = malloc(sizeof(Core));
 
    // Initialize the screen buffers. Back as RGBA8888, front as RGB565.
-   int width = 640;
-   int height = 480;
+   int width = 400;
+   int height = 225;
    core->backBuffer = GenImageColor(width, height, RED); // RGBA8888
    core->frontBuffer = GenImageColor(width, height, BLUE);
    ImageFormat(&core->frontBuffer, PIXELFORMAT_UNCOMPRESSED_R5G6B5);
@@ -244,10 +244,11 @@ void UpdateGame() {
       return;
    }
 
-   ClearBackground(SKYBLUE);
-   ImageDrawCircle(&core->backBuffer, 200, 150, 30, RED);
-   ImageDrawRectangle(&core->backBuffer, 400, 200, 100, 140, GREEN);
-   ImageDrawLine(&core->backBuffer, 50, 300, 550, 380, ORANGE);
+   ClearBackground(RAYWHITE);
+   ImageDrawCircle(&core->backBuffer, 300, 100, 30, SKYBLUE);
+   ImageDrawRectangle(&core->backBuffer, 100, 100, 100, 140, GREEN);
+   ImageDrawLine(&core->backBuffer, 50, 50, 200, 80, ORANGE);
+   ImageDrawRectangle(&core->backBuffer, 20, 150, 50, 80, RED);
 }
 
 void retro_run(void) {
