@@ -74,7 +74,6 @@ bool InitCore() {
    // Make sure the core is available to be loaded.
    CloseCore();
 
-
    core = malloc(sizeof(Core));
 
    // Initialize the screen buffers. Back as RGBA8888, front as RGB565.
@@ -83,6 +82,8 @@ bool InitCore() {
    core->backBuffer = GenImageColor(width, height, RED); // RGBA8888
    core->frontBuffer = GenImageColor(width, height, BLUE);
    ImageFormat(&core->frontBuffer, PIXELFORMAT_UNCOMPRESSED_R5G6B5);
+
+   return true;
 }
 
 void retro_init(void) {
