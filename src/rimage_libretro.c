@@ -173,9 +173,7 @@ void retro_set_environment(retro_environment_t cb) {
    }
 
    bool supports_no_game = true;
-   if (cb(RETRO_ENVIRONMENT_SET_SUPPORT_NO_GAME, &supports_no_game)) {
-      TraceLog(LOG_INFO, "Failed to set support no game");
-   }
+   cb(RETRO_ENVIRONMENT_SET_SUPPORT_NO_GAME, &supports_no_game);
 }
 
 void retro_set_audio_sample(retro_audio_sample_t cb) {
