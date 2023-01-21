@@ -17,19 +17,14 @@ ImageDrawLine(&core->backBuffer, 50, 300, 550, 380, ORANGE);
 cmake -B build .
 make -C build
 
-```
-
-For some reason it needs a ROM-name, that is an existing file, even though it doesn't read it, or it segfaults:
-
-```
 # linux
-retroarch -L build/rimage_libretro.so README.md
+retroarch -L build/rimage_libretro.so
 
 # mac
-/Applications/RetroArch.app/Contents/MacOS/RetroArch -L build/rimage_libretro.dylib README.md
+/Applications/RetroArch.app/Contents/MacOS/RetroArch -L build/rimage_libretro.dylib
 
 # windows
-retroarch -L build/rimage_libretro.dll README.md
+retroarch -L build/rimage_libretro.dll
 ```
 
 ## License
