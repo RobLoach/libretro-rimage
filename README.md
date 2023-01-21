@@ -14,8 +14,8 @@ ImageDrawLine(&core->backBuffer, 50, 300, 550, 380, ORANGE);
 ## Development
 
 ```
-git submodule update --init
-make
+cmake -B build .
+make -C build
 retroarch -L rimage_libretro.so
 ```
 

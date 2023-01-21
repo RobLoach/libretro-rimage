@@ -4,10 +4,10 @@
 #include <stdio.h> // stderr
 #include <string.h>
 
-#include "../vendor/libretro-common/include/libretro.h"
+#include "libretro.h"
 
 #define RIMAGE_IMPLEMENTATION
-#include "../vendor/rimage/rimage.h"
+#include "rimage.h"
 
 typedef struct Core {
    Image backBuffer;

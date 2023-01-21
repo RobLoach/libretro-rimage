@@ -1,2 +1,4 @@
 *.so
 *.o
+/build/
+.DS_Store
