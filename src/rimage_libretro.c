@@ -305,7 +305,12 @@ bool retro_load_game(const struct retro_game_info *info) {
 
    check_variables();
 
-   return LoadGame(info->data, info->size, info->path);
+   if (info) {
+      return LoadGame(info->data, info->size, info->path);
+   }
+   else {
+      return LoadGame(NULL, 0, "");
+   }
 }
 
 void retro_unload_game(void) {
