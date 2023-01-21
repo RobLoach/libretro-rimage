@@ -14,9 +14,17 @@ ImageDrawLine(&core->backBuffer, 50, 300, 550, 380, ORANGE);
 ## Development
 
 ```
-git submodule update --init
-make
-retroarch -L rimage_libretro.so
+cmake -B build .
+make -C build
+
+# linux
+retroarch -L build/rimage_libretro.so
+
+# mac
+/Applications/RetroArch.app/Contents/MacOS/RetroArch -L build/rimage_libretro.dylib
+
+# windows
+retroarch -L build/rimage_libretro.dll
 ```
 
 ## License

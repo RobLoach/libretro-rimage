@@ -1,8 +1,0 @@
-[submodule "vendor/rimage"]
-	path = vendor/rimage
-	url = https://github.com/RobLoach/rimage.git
-	ignore = dirty
-[submodule "vendor/libretro-common"]
-	path = vendor/libretro-common
-	url = https://github.com/libretro/libretro-common.git
-	ignore = dirty
