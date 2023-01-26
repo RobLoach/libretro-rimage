@@ -6,6 +6,7 @@
 
 #include "../vendor/libretro-common/include/libretro.h"
 
+#define SUPPORT_FILEFORMAT_PNG
 #define RIMAGE_IMPLEMENTATION
 #include "../vendor/rimage/rimage.h"
 
@@ -19,6 +20,8 @@ typedef struct Core {
    retro_input_poll_t input_poll_cb;
    retro_input_state_t input_state_cb;
 
+   Font font;
+   Image bushy;
 } Core;
 
 retro_environment_t environ_cb;
@@ -49,6 +52,13 @@ void CloseCore() {
 
    UnloadImage(core->backBuffer);
    UnloadImage(core->frontBuffer);
+   if (core->font.texture.data != NULL) {
+      UnloadFont(core->font);
+   }
+
+   if (core->bushy.data != NULL) {
+      UnloadImage(core->bushy);
+   }
 
    free(core);
    core = NULL;
@@ -74,7 +84,7 @@ bool InitCore() {
    // Make sure the core is available to be loaded.
    CloseCore();
 
-
+   // Create the Core data
    core = malloc(sizeof(Core));
 
    // Initialize the screen buffers. Back as RGBA8888, front as RGB565.
@@ -83,6 +93,10 @@ bool InitCore() {
    core->backBuffer = GenImageColor(width, height, RED); // RGBA8888
    core->frontBuffer = GenImageColor(width, height, BLUE);
    ImageFormat(&core->frontBuffer, PIXELFORMAT_UNCOMPRESSED_R5G6B5);
+
+   // Load the Font
+   core->font = LoadFontEx("font.ttf", 50, NULL, -1);
+   core->bushy = LoadImage("grafxkid-sprite.png");
 }
 
 void retro_init(void) {
@@ -247,6 +261,18 @@ void UpdateGame() {
    ImageDrawRectangle(&core->backBuffer, 100, 100, 100, 140, GREEN);
    ImageDrawLine(&core->backBuffer, 50, 50, 200, 80, ORANGE);
    ImageDrawRectangle(&core->backBuffer, 20, 150, 50, 80, RED);
+
+   // Only use the font if it loaded.
+   if (core->font.texture.data != NULL) {
+      Vector2 textPosition = {10, 10};
+      ImageDrawTextEx(&core->backBuffer, core->font, "Hello World!", textPosition, 50, 0, BLUE);
+   }
+
+   if (core->bushy.data != NULL) {
+      Rectangle srcRec = {0, 0, core->bushy.width, core->bushy.height};
+      Rectangle dstRec = {40, 80, core->bushy.width, core->bushy.height};
+      ImageDraw(&core->backBuffer, core->bushy, srcRec, dstRec, WHITE);
+   }
 }
 
 void retro_run(void) {
