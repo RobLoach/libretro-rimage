@@ -1,5 +1,7 @@
 # libretro-rimage
 
+# Deprecated. Used [pntr](https://github.com/robloach/pntr) instead
+
 A proof-of-concept of using libretro with raylib's Image API [rimage](https://github.com/robloach/rimage).
 
 ## Example
